@@ -16,7 +16,7 @@ public class MyRectangle extends Shape{
     private int height;
     private int width;
 
-    public MyRectangle(Point leftTop, int height, int width) {
+    public MyRectangle(Point leftTop, int width, int height) {
         this.leftTop = leftTop;
         this.height = height;
         this.width = width;
