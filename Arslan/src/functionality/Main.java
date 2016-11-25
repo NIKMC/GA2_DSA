@@ -1,8 +1,11 @@
 package functionality;
 
+import model.Line;
 import model.MyCircle;
 import model.MyRectangle;
 import model.RocketLauncherUltimateNitroTurboBoostSuperSpace3000;
+
+import java.awt.*;
 
 /**
  * Created by NIKMC on 25.11.16.
@@ -13,7 +16,9 @@ public class Main {
         Reader fileReader = new Reader();
         for(MyCircle circle : fileReader.readerObstaclesCircle()){
             System.out.println(circle.getCenter().x + " | " + circle.getCenter().y + " | " + circle.getRadius());
+            System.out.println(circle.checkIntersection(new Line(new Point(30,90),new Point(110,4))));
         }
+
         for(MyRectangle rectangle : fileReader.readerObstaclesRectangle())
         System.out.println(rectangle.getLeftTop().x + " | " + rectangle.getLeftTop().y + " | " +
                 rectangle.getWidth() + " | " + rectangle.getHeight());
