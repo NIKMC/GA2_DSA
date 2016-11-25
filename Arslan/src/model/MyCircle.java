@@ -13,6 +13,11 @@ public class MyCircle extends Shape{
         return center;
     }
 
+    @Override
+    public boolean checkIntersection(Line fire) {
+        return false;
+    }
+
     private Point center;
     private int radius;
 
@@ -36,4 +41,6 @@ public class MyCircle extends Shape{
     public void setRadius(int radius) {
         this.radius = radius;
     }
+
+
 }

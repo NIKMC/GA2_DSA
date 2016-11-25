@@ -12,6 +12,11 @@ public class MyRectangle extends Shape{
         return leftTop;
     }
 
+    @Override
+    public boolean checkIntersection(Line fire) {
+        return false;
+    }
+
     private Point leftTop;
     private int height;
     private int width;
