@@ -1,11 +1,17 @@
 package model;
 
+
 import java.awt.*;
 
 /**
  * Created by NIKMC on 25.11.16.
  */
-public class MyCircle {
+public class MyCircle extends Shape{
+
+    @Override
+    public Point getCoord() {
+        return center;
+    }
 
     private Point center;
     private int radius;

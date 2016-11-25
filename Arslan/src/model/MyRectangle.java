@@ -5,7 +5,13 @@ import java.awt.*;
 /**
  * Created by NIKMC on 25.11.16.
  */
-public class MyRectangle {
+public class MyRectangle extends Shape{
+
+    @Override
+    public Point getCoord() {
+        return leftTop;
+    }
+
     private Point leftTop;
     private int height;
     private int width;
