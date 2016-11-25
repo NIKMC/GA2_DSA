@@ -7,5 +7,5 @@ import java.awt.*;
  */
 public abstract class Shape {
     public abstract Point getCoord();
-
+    public abstract boolean checkIntersection(Line fire);
 }
