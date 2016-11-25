@@ -5,12 +5,23 @@ import java.awt.*;
 /**
  * Created by NIKMC on 25.11.16.
  */
-public class MyRectangle {
+public class MyRectangle extends Shape{
+
+    @Override
+    public Point getCoord() {
+        return leftTop;
+    }
+
+    @Override
+    public boolean checkIntersection(Line fire) {
+        return false;
+    }
+
     private Point leftTop;
     private int height;
     private int width;
 
-    public MyRectangle(Point leftTop, int height, int width) {
+    public MyRectangle(Point leftTop, int width, int height) {
         this.leftTop = leftTop;
         this.height = height;
         this.width = width;

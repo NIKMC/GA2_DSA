@@ -1,11 +1,22 @@
 package model;
 
+
 import java.awt.*;
 
 /**
  * Created by NIKMC on 25.11.16.
  */
-public class MyCircle {
+public class MyCircle extends Shape{
+
+    @Override
+    public Point getCoord() {
+        return center;
+    }
+
+    @Override
+    public boolean checkIntersection(Line fire) {
+        return false;
+    }
 
     private Point center;
     private int radius;
@@ -30,4 +41,6 @@ public class MyCircle {
     public void setRadius(int radius) {
         this.radius = radius;
     }
+
+
 }
