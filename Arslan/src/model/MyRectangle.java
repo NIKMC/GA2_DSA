@@ -7,6 +7,13 @@ import java.awt.*;
  */
 public class MyRectangle extends Shape{
 
+    private Point leftTop;
+    private int height;
+    private int width;
+    private Line leftVtx;
+    private Line rightVtx;
+    private Line bottomVtx;
+
     @Override
     public Point getCoord() {
         return leftTop;
@@ -17,14 +24,14 @@ public class MyRectangle extends Shape{
         return false;
     }
 
-    private Point leftTop;
-    private int height;
-    private int width;
 
     public MyRectangle(Point leftTop, int width, int height) {
         this.leftTop = leftTop;
         this.height = height;
         this.width = width;
+        this.leftVtx = new Line(leftTop, new Point(leftTop.x, leftTop.y + height));
+        this.bottomVtx = new Line(new Point(leftTop.x, leftTop.y + height), new Point(leftTop.x + width, leftTop.y + height));
+        this.rightVtx = new Line(new Point(leftTop.x + width, leftTop.y + height), new Point(leftTop.x + width, leftTop.y));
     }
 
     public Point getLeftTop() {

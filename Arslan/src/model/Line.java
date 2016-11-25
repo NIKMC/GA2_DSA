@@ -30,4 +30,18 @@ public class Line {
     public void setFinish(Point finish) {
         this.finish = finish;
     }
+
+    public boolean isIntersecting(Line that){
+        return false;
+    }
+
+    public static int getOrientation(Line segment, Point pointUnderTest) {
+        int y1 = segment.getStart().y;
+        int x1 = segment.getStart().x;
+        int y2 = segment.getFinish().y;
+        int x2 = segment.getFinish().x;
+        int y3 = pointUnderTest.y;
+        int x3 = pointUnderTest.x;
+        return (y2-y1)*(x3-x2)-(y3-y2)*(x2-x1);
+    }
 }
