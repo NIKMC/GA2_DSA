@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by NIKMC on 25.11.16.
  */
-public class MyCircle extends Shape{
+public class MyCircle extends MyShape{
 
     @Override
     public Point getCoord() {

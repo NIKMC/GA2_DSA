@@ -2,6 +2,7 @@ package functionality;
 
 import model.MyCircle;
 import model.MyRectangle;
+import model.MyShape;
 import model.RocketLauncherUltimateNitroTurboBoostSuperSpace3000;
 
 import java.awt.*;
@@ -50,22 +51,22 @@ public class Reader {
     }
 
 
-    public List<Shape> readerObstaclesCircle() {
-        List<Shape> listCircles = new ArrayList<>();
+    public List<MyShape> readerObstaclesCircle() {
+        List<MyShape> listCircles = new ArrayList<>();
         List<String> strings = patternReader(FILE_OBSTACLE_CIRCLE);
         for(String string : strings){
-            listCircles.add((Shape) new MyCircle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
+            listCircles.add((MyShape) new MyCircle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
                                          Integer.parseInt(string.substring(string.indexOf(" ") + 1, string.lastIndexOf(" ")))),
                     Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1)) ));
         }
         return listCircles;
     }
 
-    public List<Shape> readerObstaclesRectangle() {
-        List<Shape> listRectangles = new ArrayList<>();
+    public List<MyShape> readerObstaclesRectangle() {
+        List<MyShape> listRectangles = new ArrayList<>();
         List<String> strings = patternReader(FILE_OBSTACLE_RECTANGLE);
         for(String string : strings){
-            listRectangles.add((Shape) new MyRectangle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
+            listRectangles.add((MyShape) new MyRectangle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
                     Integer.parseInt(string.substring(string.indexOf(" ") + 1, string.lastIndexOf(" ")))),
                     Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1, string.lastIndexOf("-"))),
                     Integer.parseInt(string.substring(string.lastIndexOf("-") + 1))));
@@ -78,9 +79,9 @@ public class Reader {
 
         List<String> strings = patternReader(FILE_ROCKETLAUNCHER);
         for(String string : strings){
-//            listRockets.add(new RocketLauncherUltimateNitroTurboBoostSuperSpace3000(
-//                    new Point(Integer.parseInt(string.substring(0, string.lastIndexOf(" "))),
-//                    Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1)))));
+            listRockets.add(new RocketLauncherUltimateNitroTurboBoostSuperSpace3000(
+                    new Point(Integer.parseInt(string.substring(0, string.lastIndexOf(" "))),
+                    Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1)))));
         }
         return listRockets;
     }

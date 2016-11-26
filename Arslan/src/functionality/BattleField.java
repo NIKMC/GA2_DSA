@@ -1,9 +1,6 @@
 package functionality;
 
-import model.Line;
-import model.MyCircle;
-import model.MyRectangle;
-import model.RocketLauncherUltimateNitroTurboBoostSuperSpace3000;
+import model.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -17,25 +14,9 @@ public class BattleField {
 
     public void fight(){
         Reader fileReader = new Reader();
-        /*for(MyCircle circle : fileReader.readerObstaclesCircle()){
-            System.out.println(circle.getCenter().x + " | " + circle.getCenter().y + " | " + circle.getRadius());
-            System.out.println(circle.checkIntersection(new Line(new Point(30,90),new Point(110,4))));
-        }
 
-        for(MyRectangle rectangle : fileReader.readerObstaclesRectangle())
-            System.out.println(rectangle.getLeftTop().x + " | " + rectangle.getLeftTop().y + " | " +
-                    rectangle.getWidth() + " | " + rectangle.getHeight());
-
-        for (RocketLauncherUltimateNitroTurboBoostSuperSpace3000 rocket : fileReader.readerRocketLauncher())
-            System.out.println(rocket.getLocation().x + " | " + rocket.getLocation().y );
-
-        for(MyRectangle rectangle : fileReader.readerTargets())
-            System.out.println(rectangle.getLeftTop().x + " | " + rectangle.getLeftTop().y + " | " +
-                    rectangle.getWidth() + " | " + rectangle.getHeight());
-        */
-
-        ArrayList<Shape> obstacles = (ArrayList<Shape>) fileReader.readerObstaclesCircle();
-        obstacles.addAll( (ArrayList<Shape>) fileReader.readerObstaclesRectangle() );
+        ArrayList<MyShape> obstacles = (ArrayList<MyShape>) fileReader.readerObstaclesCircle();
+        obstacles.addAll( (ArrayList<MyShape>) fileReader.readerObstaclesRectangle() );
         ArrayList<RocketLauncherUltimateNitroTurboBoostSuperSpace3000> launchers = (ArrayList<RocketLauncherUltimateNitroTurboBoostSuperSpace3000>) fileReader.readerRocketLauncher();
         ArrayList<MyRectangle> targets = (ArrayList<MyRectangle>) fileReader.readerTargets();
 
@@ -44,10 +25,44 @@ public class BattleField {
                 boolean underAttack = false;
                 LinkedList<Line> targetSides = target.getObservableSides(launcher);
                 for (int i = 0; i < targetSides.size() && !underAttack; i++) {
-                    
-                    //Line shootLien = new Line(launcher.getLocation(), targetPoint);
+
+                    Line tl = targetSides.get(i);
+                    if(tl.getStart().getX() == tl.getFinish().getX()){ // vertical
+
+                        int x = (int) tl.getStart().getX();
+                        for (int y = (int) tl.getStart().getY(); y < tl.getFinish().getY() && !underAttack; y++) {
+
+                            Line shootLine = new Line(launcher.getLocation(), new Point(x, y));
+                            boolean clear = true;
+                            for (int j = 0; j < obstacles.size() && clear; j++) {
+                                clear = !obstacles.get(j).checkIntersection(shootLine);
+                            } // for obstacles
+                            underAttack = clear;
+                        } // for pixels in side
+                    } // if
+                    else{ // horisontal
+                        int y = (int) tl.getStart().getY();
+                        for (int x = (int) tl.getStart().getX(); x < tl.getFinish().getX() && !underAttack; x++) {
+
+                            Line shootLine = new Line(launcher.getLocation(), new Point(x, y));
+                            boolean clear = true;
+                            for (int j = 0; j < obstacles.size() && clear; j++) {
+                                clear = !obstacles.get(j).checkIntersection(shootLine);
+                            } // for obstacles
+                            underAttack = clear;
+                        } // for pixels in side
+                    } // else
+
                 } // for sides
+
+                if (underAttack) launcher.getUnderStrike().add(target);
+
             } // for target
+            System.out.println("RocketLauncher "+ launcher.getLocation().toString());
+            for(MyRectangle target: launcher.getUnderStrike()){
+                System.out.println(target.getLeftTop().toString());
+            }
+
         } // for launcher
 
     }
