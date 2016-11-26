@@ -50,22 +50,22 @@ public class Reader {
     }
 
 
-    public List<MyCircle> readerObstaclesCircle() {
-        List<MyCircle> listCircles = new ArrayList<>();
+    public List<Shape> readerObstaclesCircle() {
+        List<Shape> listCircles = new ArrayList<>();
         List<String> strings = patternReader(FILE_OBSTACLE_CIRCLE);
         for(String string : strings){
-            listCircles.add(new MyCircle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
+            listCircles.add((Shape) new MyCircle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
                                          Integer.parseInt(string.substring(string.indexOf(" ") + 1, string.lastIndexOf(" ")))),
-                    Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1))));
+                    Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1)) ));
         }
         return listCircles;
     }
 
-    public List<MyRectangle> readerObstaclesRectangle() {
-        List<MyRectangle> listRectangles = new ArrayList<>();
+    public List<Shape> readerObstaclesRectangle() {
+        List<Shape> listRectangles = new ArrayList<>();
         List<String> strings = patternReader(FILE_OBSTACLE_RECTANGLE);
         for(String string : strings){
-            listRectangles.add(new MyRectangle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
+            listRectangles.add((Shape) new MyRectangle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
                     Integer.parseInt(string.substring(string.indexOf(" ") + 1, string.lastIndexOf(" ")))),
                     Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1, string.lastIndexOf("-"))),
                     Integer.parseInt(string.substring(string.lastIndexOf("-") + 1))));

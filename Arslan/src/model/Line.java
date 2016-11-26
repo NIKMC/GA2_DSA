@@ -47,11 +47,6 @@ public class Line {
         return r.getAttackAngle() >= this.getAngle() && this.getAngle() >= -r.getAttackAngle();
     }
 
-    public static void main(String[] args) {
-        Line l = new Line(new Point(10,10), new Point(9,9));
-        l.getAngle();
-    }
-
     public boolean isIntersecting(Line that){
         int orientThisToStr = Checker.Signum(this.getOrientation(that.getStart()));
         int orientThisToFin = Checker.Signum(this.getOrientation(that.getFinish()));
