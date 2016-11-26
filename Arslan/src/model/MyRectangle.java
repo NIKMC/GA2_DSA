@@ -32,6 +32,12 @@ public class MyRectangle extends Shape{
 
     @Override
     public boolean checkIntersection(Line fire) {
+        if(leftVtx.isIntersecting(fire))
+            return true;
+        if(bottomVtx.isIntersecting(fire))
+            return true;
+        if(rightVtx.isIntersecting(fire))
+            return true;
         return false;
     }
 

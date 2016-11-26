@@ -53,10 +53,10 @@ public class Line {
     }
 
     public boolean isIntersecting(Line that){
-        int orientThisToStr = Checker.Signum(getOrientation(this, that.getStart());
-        int orientThisToFin = Checker.Signum(getOrientation(this, that.getFinish());
-        int orientThatToStr = Checker.Signum(getOrientation(that, this.getStart());
-        int orientThatToFin = Checker.Signum(getOrientation(that, this.getFinish());
+        int orientThisToStr = Checker.Signum(this.getOrientation(that.getStart()));
+        int orientThisToFin = Checker.Signum(this.getOrientation(that.getFinish()));
+        int orientThatToStr = Checker.Signum(that.getOrientation(this.getStart()));
+        int orientThatToFin = Checker.Signum(that.getOrientation(this.getFinish()));
 
         //if collinear
         if(orientThisToStr == 0 && orientThisToFin == 0){
@@ -74,12 +74,6 @@ public class Line {
             else
                 return false;
         }
-
-
-
-//        if(Checker.Signum(getOrientation(this, that.getFinish())) != ))
-//            if (ge)
-        return false;
     }
 
     boolean isXBetweenXProjection(int xCoord){
@@ -112,11 +106,11 @@ public class Line {
         }
     }
 
-    public static int getOrientation(Line segment, Point pointUnderTest) {
-        int y1 = segment.getStart().y;
-        int x1 = segment.getStart().x;
-        int y2 = segment.getFinish().y;
-        int x2 = segment.getFinish().x;
+    public int getOrientation(Point pointUnderTest) {
+        int y1 = this.start.y;
+        int x1 = this.start.x;
+        int y2 = this.finish.y;
+        int x2 = this.finish.x;
         int y3 = pointUnderTest.y;
         int x3 = pointUnderTest.x;
         return (y2-y1)*(x3-x2)-(y3-y2)*(x2-x1);
