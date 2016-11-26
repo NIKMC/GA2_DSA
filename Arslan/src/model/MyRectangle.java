@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.*;
+import java.util.LinkedList;
 
 /**
  * Created by NIKMC on 25.11.16.
@@ -14,6 +15,16 @@ public class MyRectangle extends Shape{
     private Line rightVtx;
     private Line bottomVtx;
 
+
+    public MyRectangle(Point leftTop, int width, int height) {
+        this.leftTop = leftTop;
+        this.height = height;
+        this.width = width;
+        this.leftVtx = new Line(leftTop, new Point(leftTop.x, leftTop.y + height));
+        this.bottomVtx = new Line(new Point(leftTop.x, leftTop.y + height), new Point(leftTop.x + width, leftTop.y + height));
+        this.rightVtx = new Line(new Point(leftTop.x + width, leftTop.y + height), new Point(leftTop.x + width, leftTop.y));
+    }
+
     @Override
     public Point getCoord() {
         return leftTop;
@@ -24,15 +35,22 @@ public class MyRectangle extends Shape{
         return false;
     }
 
+    public LinkedList<Line> getObservableSides(RocketLauncherUltimateNitroTurboBoostSuperSpace3000 r){
+        LinkedList<Line>  lines = new LinkedList<Line>();
+        int rX = (int) r.getLocation().getX();
+        int rY = (int) r.getLocation().getY();
+        if(rX < leftTop.getX() + width/2){
+            lines.add(bottomVtx);
+            if (rX < leftTop.getX()) lines.add(leftVtx);
+        }
+        else{
+            if (rX > leftTop.getX() + width) lines.add(rightVtx);
+            lines.add(bottomVtx);
+        }
 
-    public MyRectangle(Point leftTop, int width, int height) {
-        this.leftTop = leftTop;
-        this.height = height;
-        this.width = width;
-        this.leftVtx = new Line(leftTop, new Point(leftTop.x, leftTop.y + height));
-        this.bottomVtx = new Line(new Point(leftTop.x, leftTop.y + height), new Point(leftTop.x + width, leftTop.y + height));
-        this.rightVtx = new Line(new Point(leftTop.x + width, leftTop.y + height), new Point(leftTop.x + width, leftTop.y));
+        return lines;
     }
+
 
     public Point getLeftTop() {
         return leftTop;
