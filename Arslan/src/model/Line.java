@@ -1,5 +1,7 @@
 package model;
 
+import functionality.Checker;
+
 import java.awt.*;
 import java.awt.geom.Arc2D;
 
@@ -51,7 +53,63 @@ public class Line {
     }
 
     public boolean isIntersecting(Line that){
+        int orientThisToStr = Checker.Signum(getOrientation(this, that.getStart());
+        int orientThisToFin = Checker.Signum(getOrientation(this, that.getFinish());
+        int orientThatToStr = Checker.Signum(getOrientation(that, this.getStart());
+        int orientThatToFin = Checker.Signum(getOrientation(that, this.getFinish());
+
+        //if collinear
+        if(orientThisToStr == 0 && orientThisToFin == 0){
+            if(((isXBetweenXProjection(that.getStart().x)) || (isXBetweenXProjection(that.getFinish().x))) &&
+                    ((isYBetweenYProjection(that.getStart().y)) || (isYBetweenYProjection(that.getFinish().y)))){
+                return true;
+            }
+            else
+                return false;
+        }
+        // general case
+        else {
+            if ((orientThatToFin != orientThatToStr) && (orientThisToFin != orientThisToStr))
+                return true;
+            else
+                return false;
+        }
+
+
+
+//        if(Checker.Signum(getOrientation(this, that.getFinish())) != ))
+//            if (ge)
         return false;
+    }
+
+    boolean isXBetweenXProjection(int xCoord){
+        if(this.start.x == this.finish.x){
+            if(this.start.x == xCoord)
+                return true;
+            else
+                return false;
+        }
+        else {
+            if (Checker.Signum(this.start.x - xCoord) != Checker.Signum(this.finish.x - xCoord))
+                return true;
+            else
+                return false;
+        }
+    }
+
+    boolean isYBetweenYProjection(int yCoord){
+        if(this.start.y == this.finish.y){
+            if(this.start.y == yCoord)
+                return true;
+            else
+                return false;
+        }
+        else {
+            if (Checker.Signum(this.start.y - yCoord) != Checker.Signum(this.finish.y - yCoord))
+                return true;
+            else
+                return false;
+        }
     }
 
     public static int getOrientation(Line segment, Point pointUnderTest) {
