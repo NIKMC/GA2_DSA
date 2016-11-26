@@ -2,20 +2,43 @@ package model;
 
 import functionality.Checker;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.awt.geom.Arc2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by NIKMC on 25.11.16.
  */
 public class Line {
+
+    final int IMG_WIDTH = 600;
     private Point start;
     private Point finish;
 
 
-    public Line(Point start, Point finish) {
+    public Line(Point start, Point finish, String resultImgPath) {
         this.start = start;
         this.finish = finish;
+
+
+
+        File resultFile = new File(resultImgPath);
+        int imgWidth = IMG_WIDTH;
+        int pixelColor = new Color(33, 25, 255).getRGB();
+        try {
+            BufferedImage image = new BufferedImage(IMG_WIDTH, IMG_WIDTH, BufferedImage.TYPE_INT_RGB);//ImageIO.read(resultFile);
+                image.setRGB(150, 150, pixelColor);
+            ImageIO.write(image, "png", resultFile);
+        }
+        catch (IOException e) {
+
+        }
+
+
     }
 
     public Point getStart() {
@@ -48,7 +71,7 @@ public class Line {
     }
 
     public static void main(String[] args) {
-        Line l = new Line(new Point(10,10), new Point(9,9));
+        Line l = new Line(new Point(10,10), new Point(9,9), "result.png");
         l.getAngle();
     }
 

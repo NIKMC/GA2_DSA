@@ -7,6 +7,8 @@ import java.util.LinkedList;
  * Created by NIKMC on 25.11.16.
  */
 public class MyRectangle extends Shape{
+    static String resultPNGpath = "result.png";
+
 
     private Point leftTop;
     private int height;
@@ -20,9 +22,9 @@ public class MyRectangle extends Shape{
         this.leftTop = leftTop;
         this.height = height;
         this.width = width;
-        this.leftVtx = new Line(leftTop, new Point(leftTop.x, leftTop.y + height));
-        this.bottomVtx = new Line(new Point(leftTop.x, leftTop.y + height), new Point(leftTop.x + width, leftTop.y + height));
-        this.rightVtx = new Line(new Point(leftTop.x + width, leftTop.y + height), new Point(leftTop.x + width, leftTop.y));
+        this.leftVtx = new Line(leftTop, new Point(leftTop.x, leftTop.y + height), resultPNGpath);
+        this.bottomVtx = new Line(new Point(leftTop.x, leftTop.y + height), new Point(leftTop.x + width, leftTop.y + height), resultPNGpath);
+        this.rightVtx = new Line(new Point(leftTop.x + width, leftTop.y + height), new Point(leftTop.x + width, leftTop.y), resultPNGpath);
     }
 
     @Override
