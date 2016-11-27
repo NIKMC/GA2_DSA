@@ -63,7 +63,7 @@ public class BattleField {
                 System.out.println(target.getLeftTop().toString());
             }
 
-        } // for launcher
+        } // for launcher !!
 
     }
 
