@@ -22,9 +22,10 @@ public class MyRectangle extends MyShape {
         this.leftTop = leftTop;
         this.height = height;
         this.width = width;
-        this.leftVtx = new Line(leftTop, new Point(leftTop.x, leftTop.y + height), image);
-        this.bottomVtx = new Line(new Point(leftTop.x, leftTop.y + height), new Point(leftTop.x + width, leftTop.y + height), image);
-        this.rightVtx = new Line(new Point(leftTop.x + width, leftTop.y + height), new Point(leftTop.x + width, leftTop.y), image);
+        int pixelColor = new Color(33, 25, 255).getRGB();
+        this.leftVtx = new Line(leftTop, new Point(leftTop.x, leftTop.y + height), image, pixelColor);
+        this.bottomVtx = new Line(new Point(leftTop.x, leftTop.y + height), new Point(leftTop.x + width, leftTop.y + height), image, pixelColor);
+        this.rightVtx = new Line(new Point(leftTop.x + width, leftTop.y + height), new Point(leftTop.x + width, leftTop.y), image, pixelColor);
     }
 
     @Override

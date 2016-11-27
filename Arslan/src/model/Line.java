@@ -15,19 +15,18 @@ import java.io.IOException;
  */
 public class Line {
 
-    final int scale = 2;
+    final int scale = 4;
     private Point start;
     private Point finish;
 
 
-    public Line(Point start, Point finish, BufferedImage image) {
+    public Line(Point start, Point finish, BufferedImage image, int pixelColor) {
         this.start = start;
         this.finish = finish;
-        DrawLine(image);
+        DrawLine(image, pixelColor);
     }
 
-    public void DrawLine(BufferedImage image){
-        int pixelColor = new Color(33, 25, 255).getRGB();
+    public void DrawLine(BufferedImage image, int pixelColor){
         //ImageIO.read(resultFile);
         if(start.x == finish.x){
             for(int yIter = start.y; yIter != finish.y; yIter += (finish.y - start.y)/Math.abs(finish.y - start.y))

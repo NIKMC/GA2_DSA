@@ -81,9 +81,9 @@ public class Reader {
 
         List<String> strings = patternReader(FILE_ROCKETLAUNCHER);
         for(String string : strings){
-//            listRockets.add(new RocketLauncherUltimateNitroTurboBoostSuperSpace3000(
-//                    new Point(Integer.parseInt(string.substring(0, string.lastIndexOf(" "))),
-//                    Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1)))));
+            listRockets.add(new RocketLauncherUltimateNitroTurboBoostSuperSpace3000(
+                    new Point(Integer.parseInt(string.substring(0, string.lastIndexOf(" "))),
+                    Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1)))));
         }
         return listRockets;
     }
