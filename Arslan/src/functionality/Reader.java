@@ -2,6 +2,7 @@ package functionality;
 
 import model.MyCircle;
 import model.MyRectangle;
+import model.MyShape;
 import model.RocketLauncherUltimateNitroTurboBoostSuperSpace3000;
 
 import java.awt.*;
@@ -51,26 +52,26 @@ public class Reader {
     }
 
 
-    public List<Shape> readerObstaclesCircle(BufferedImage image) {
-        List<Shape> listCircles = new ArrayList<>();
+    public List<MyShape> readerObstaclesCircle(BufferedImage image) {
+        List<MyShape> listCircles = new ArrayList<>();
         List<String> strings = patternReader(FILE_OBSTACLE_CIRCLE);
         for(String string : strings){
-            listCircles.add((Shape) new MyCircle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
+            listCircles.add( new MyCircle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
                                          Integer.parseInt(string.substring(string.indexOf(" ") + 1, string.lastIndexOf(" ")))),
                     Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1)) ));
         }
         return listCircles;
     }
 
-    public List<Shape> readerObstaclesRectangle(BufferedImage image) {
-        List<Shape> listRectangles = new ArrayList<>();
+    public List<MyShape> readerObstaclesRectangle(BufferedImage image) {
+        List<MyShape> listRectangles = new ArrayList<>();
         List<String> strings = patternReader(FILE_OBSTACLE_RECTANGLE);
         for(String string : strings){
-            listRectangles.add((Shape) new MyRectangle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
+            listRectangles.add( new MyRectangle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
                     Integer.parseInt(string.substring(string.indexOf(" ") + 1, string.lastIndexOf(" ")))),
                     Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1, string.lastIndexOf("-"))),
-                    Integer.parseInt(string.substring(string.lastIndexOf("-") + 1))),
-                    image);
+                    Integer.parseInt(string.substring(string.lastIndexOf("-") + 1)),
+                    image));
         }
         return listRectangles;
     }
@@ -94,8 +95,8 @@ public class Reader {
             listRectangles.add(new MyRectangle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
                     Integer.parseInt(string.substring(string.indexOf(" ") + 1, string.lastIndexOf(" ")))),
                     Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1, string.lastIndexOf("-"))),
-                    Integer.parseInt(string.substring(string.lastIndexOf("-") + 1))),
-                    image);
+                    Integer.parseInt(string.substring(string.lastIndexOf("-") + 1)),
+                    image));
         }
         return listRectangles;
     }

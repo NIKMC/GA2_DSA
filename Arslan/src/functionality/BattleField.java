@@ -1,9 +1,6 @@
 package functionality;
 
-import model.Line;
-import model.MyCircle;
-import model.MyRectangle;
-import model.RocketLauncherUltimateNitroTurboBoostSuperSpace3000;
+import model.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -43,8 +40,8 @@ public class BattleField {
                     rectangle.getWidth() + " | " + rectangle.getHeight());
         */
 
-        ArrayList<Shape> obstacles = (ArrayList<Shape>) fileReader.readerObstaclesCircle(image);
-        obstacles.addAll( (ArrayList<Shape>) fileReader.readerObstaclesRectangle(image) );
+        ArrayList<MyShape> obstacles = (ArrayList<MyShape>) fileReader.readerObstaclesCircle(image);
+        obstacles.addAll( (ArrayList<MyShape>) fileReader.readerObstaclesRectangle(image) );
         ArrayList<RocketLauncherUltimateNitroTurboBoostSuperSpace3000> launchers = (ArrayList<RocketLauncherUltimateNitroTurboBoostSuperSpace3000>) fileReader.readerRocketLauncher(image);
         ArrayList<MyRectangle> targets = (ArrayList<MyRectangle>) fileReader.readerTargets(image);
 

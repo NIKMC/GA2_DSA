@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class Line {
 
-
+    final int scale = 2;
     private Point start;
     private Point finish;
 
@@ -23,18 +23,24 @@ public class Line {
     public Line(Point start, Point finish, BufferedImage image) {
         this.start = start;
         this.finish = finish;
+        DrawLine(image);
+    }
 
-
-
-
+    public void DrawLine(BufferedImage image){
         int pixelColor = new Color(33, 25, 255).getRGB();
-
-            //ImageIO.read(resultFile);
-                image.setRGB(150, 150, pixelColor);
-
-
-
-
+        //ImageIO.read(resultFile);
+        if(start.x == finish.x){
+            for(int yIter = start.y; yIter != finish.y; yIter += (finish.y - start.y)/Math.abs(finish.y - start.y))
+                image.setRGB(start.x * scale, yIter * scale, pixelColor);
+        }
+        else{
+            double k = (finish.y - start.y) / (finish.x - start.x);
+            int yCrnt;
+            for(int xIter = start.x; xIter != finish.x; xIter += (finish.x - start.x)/Math.abs(finish.x - start.x)) {
+                yCrnt = start.y + (int)((xIter - start.x) * k);
+                image.setRGB(xIter * scale, yCrnt * scale, pixelColor);
+            }
+        }
     }
 
     public Point getStart() {

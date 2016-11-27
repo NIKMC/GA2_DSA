@@ -7,7 +7,7 @@ import java.util.LinkedList;
 /**
  * Created by NIKMC on 25.11.16.
  */
-public class MyRectangle extends Shape{
+public class MyRectangle extends MyShape {
 
 
     private Point leftTop;
