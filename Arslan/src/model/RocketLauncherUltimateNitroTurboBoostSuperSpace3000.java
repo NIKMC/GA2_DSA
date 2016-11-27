@@ -19,7 +19,7 @@ public class RocketLauncherUltimateNitroTurboBoostSuperSpace3000 {
 
     public RocketLauncherUltimateNitroTurboBoostSuperSpace3000(Point location) {
         this.location = location;
-        this.attackAngle = 60.0; // default
+        this.attackAngle = 30.0; // default
         this.underStrike = new LinkedList<MyRectangle>();
     }
 

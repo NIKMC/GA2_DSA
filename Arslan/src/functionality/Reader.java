@@ -58,7 +58,7 @@ public class Reader {
         for(String string : strings){
             listCircles.add( new MyCircle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
                                          Integer.parseInt(string.substring(string.indexOf(" ") + 1, string.lastIndexOf(" ")))),
-                    Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1)) ));
+                    Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1)), image ));
         }
         return listCircles;
     }

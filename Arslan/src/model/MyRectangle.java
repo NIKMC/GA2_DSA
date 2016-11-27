@@ -23,9 +23,12 @@ public class MyRectangle extends MyShape {
         this.height = height;
         this.width = width;
         int pixelColor = new Color(33, 25, 255).getRGB();
-        this.leftVtx = new Line(leftTop, new Point(leftTop.x, leftTop.y + height), image, pixelColor);
-        this.bottomVtx = new Line(new Point(leftTop.x, leftTop.y + height), new Point(leftTop.x + width, leftTop.y + height), image, pixelColor);
-        this.rightVtx = new Line(new Point(leftTop.x + width, leftTop.y + height), new Point(leftTop.x + width, leftTop.y), image, pixelColor);
+        this.leftVtx = new Line(leftTop, new Point(leftTop.x, leftTop.y + height));//, image, pixelColor);
+        this.bottomVtx = new Line(new Point(leftTop.x, leftTop.y + height), new Point(leftTop.x + width, leftTop.y + height));//, image, pixelColor);
+        this.rightVtx = new Line(new Point(leftTop.x + width, leftTop.y + height), new Point(leftTop.x + width, leftTop.y));//, image, pixelColor);
+        this.leftVtx.DrawLine(image,pixelColor);
+        this.rightVtx.DrawLine(image,pixelColor);
+        this.bottomVtx.DrawLine(image,pixelColor);
     }
 
     @Override
@@ -49,12 +52,12 @@ public class MyRectangle extends MyShape {
         int rX = (int) r.getLocation().getX();
         int rY = (int) r.getLocation().getY();
         if(rX < leftTop.getX() + width/2){
-            lines.add(bottomVtx);
             if (rX < leftTop.getX()) lines.add(leftVtx);
+            lines.add(bottomVtx);
         }
         else{
-            if (rX > leftTop.getX() + width) lines.add(rightVtx);
             lines.add(bottomVtx);
+            if (rX > leftTop.getX() + width) lines.add(rightVtx);
         }
 
         return lines;

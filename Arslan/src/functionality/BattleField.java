@@ -35,29 +35,41 @@ public class BattleField {
                 for (int i = 0; i < targetSides.size() && !underAttack; i++) {
 
                     Line tl = targetSides.get(i);
-                    if(tl.getStart().getX() == tl.getFinish().getX()){ // vertical
+                    if(tl.getStart().x == tl.getFinish().x){ // vertical
 
-                        int x = (int) tl.getStart().getX();
-                        for (int y = (int) tl.getStart().getY(); y < tl.getFinish().getY() && !underAttack; y++) {
-                            int pixelColor = new Color(255, 34, 21).getRGB();
-                            Line shootLine = new Line(launcher.getLocation(), new Point(x, y), image, pixelColor);
-                            boolean clear = true;
-                            for (int j = 0; j < obstacles.size() && clear; j++) {
-                                clear = !obstacles.get(j).checkIntersection(shootLine);
-                            } // for obstacles
-                            underAttack = clear;
+                        int x =  tl.getStart().x;
+                        for (int y = tl.getStart().y; y <= tl.getFinish().y && !underAttack; y++) {
+                            Line shootLine = new Line(launcher.getLocation(), new Point(x, y));  //, image, pixelColor);
+
+//                            int pixelColor1 = new Color(255, 244, 35).getRGB();
+//                            shootLine.DrawLine(image, pixelColor1);
+                            if(shootLine.isInAttackArea(launcher)) {
+                                boolean clear = true;
+                                for (int j = 0; j < obstacles.size() && clear; j++) {
+                                    clear = !obstacles.get(j).checkIntersection(shootLine);
+                                } // for obstacles
+                                underAttack = clear;
+                                int pixelColor = new Color(255, 34, 21).getRGB();
+                                if(clear) shootLine.DrawLine(image, pixelColor);
+                            } // check angle
                         } // for pixels in side
                     } // if
                     else{ // horisontal
-                        int y = (int) tl.getStart().getY();
-                        for (int x = (int) tl.getStart().getX(); x < tl.getFinish().getX() && !underAttack; x++) {
-                            int pixelColor = new Color(255, 34, 21).getRGB();
-                            Line shootLine = new Line(launcher.getLocation(), new Point(x, y), image, pixelColor);
-                            boolean clear = true;
-                            for (int j = 0; j < obstacles.size() && clear; j++) {
-                                clear = !obstacles.get(j).checkIntersection(shootLine);
-                            } // for obstacles
-                            underAttack = clear;
+                        int y = tl.getStart().y;
+                        for (int x = tl.getStart().x; x <= tl.getFinish().x && !underAttack; x++) {
+                            Line shootLine = new Line(launcher.getLocation(), new Point(x, y));  //, image, pixelColor);
+
+//                            int pixelColor1 = new Color(255, 244, 35).getRGB();
+//                            shootLine.DrawLine(image, pixelColor1);
+                            if(shootLine.isInAttackArea(launcher)) {
+                                boolean clear = true;
+                                for (int j = 0; j < obstacles.size() && clear; j++) {
+                                    clear = !obstacles.get(j).checkIntersection(shootLine);
+                                } // for obstacles
+                                underAttack = clear;
+                                int pixelColor = new Color(255, 34, 21).getRGB();
+                                if(clear) shootLine.DrawLine(image, pixelColor);
+                            }
                         } // for pixels in side
                     } // else
 

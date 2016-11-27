@@ -20,25 +20,35 @@ public class Line {
     private Point finish;
 
 
-    public Line(Point start, Point finish, BufferedImage image, int pixelColor) {
+    public Line(Point start, Point finish){//, BufferedImage image, int pixelColor) {
         this.start = start;
         this.finish = finish;
-        DrawLine(image, pixelColor);
+        //DrawLine(image, pixelColor);
     }
 
     public void DrawLine(BufferedImage image, int pixelColor){
         //ImageIO.read(resultFile);
         if(start.x == finish.x){
-            for(int yIter = start.y; yIter != finish.y; yIter += (finish.y - start.y)/Math.abs(finish.y - start.y))
+            int yIter;
+            for(yIter = start.y; yIter != finish.y; yIter += (finish.y - start.y)/Math.abs(finish.y - start.y))
                 image.setRGB(start.x * scale, yIter * scale, pixelColor);
+            image.setRGB(start.x * scale, yIter * scale, pixelColor);
         }
         else{
-            double k = (finish.y - start.y) / (finish.x - start.x);
-            int yCrnt;
-            for(int xIter = start.x; xIter != finish.x; xIter += (finish.x - start.x)/Math.abs(finish.x - start.x)) {
+            double k = (double)(finish.y - start.y) / (finish.x - start.x);
+            int yCrnt, xIter;
+            for(xIter = start.x; xIter != finish.x; xIter += (finish.x - start.x)/Math.abs(finish.x - start.x)) {
                 yCrnt = start.y + (int)((xIter - start.x) * k);
                 image.setRGB(xIter * scale, yCrnt * scale, pixelColor);
             }
+            yCrnt = start.y + (int)((xIter - start.x) * k);
+            image.setRGB(xIter * scale, yCrnt * scale, pixelColor);
+        }
+        File resultFile = new File("result.png");
+        try {
+            ImageIO.write(image, "png", resultFile);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

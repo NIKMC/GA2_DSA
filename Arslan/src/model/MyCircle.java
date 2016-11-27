@@ -2,11 +2,13 @@ package model;
 
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by NIKMC on 25.11.16.
  */
 public class MyCircle extends MyShape {
+    final int scale = 4;
 
     @Override
     public Point getCoord() {
@@ -64,9 +66,21 @@ public class MyCircle extends MyShape {
     private Point center;
     private int radius;
 
-    public MyCircle(Point center, int radius) {
+    public MyCircle(Point center, int radius, BufferedImage image) {
         this.center = center;
         this.radius = radius;
+        int pixelColor = new Color(33, 25, 255).getRGB();
+        DrawCircle(image, pixelColor);
+    }
+
+    void DrawCircle(BufferedImage image, int pixelColor){
+        int xIter, yIter, y1, y2;
+        for(xIter = center.x - radius; xIter <= center.x + radius; xIter++){
+            y1 = (int) (center.y + Math.sqrt(radius * radius - (xIter - center.x)*(xIter - center.x)));
+            image.setRGB(xIter * scale, y1 * scale, pixelColor);
+            y1 = (int) (center.y - Math.sqrt(radius * radius - (xIter - center.x)*(xIter - center.x)));
+            image.setRGB(xIter * scale, y1 * scale, pixelColor);
+        }
     }
 
     public Point getCenter() {
