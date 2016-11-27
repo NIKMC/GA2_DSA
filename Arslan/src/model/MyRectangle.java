@@ -1,13 +1,13 @@
 package model;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 /**
  * Created by NIKMC on 25.11.16.
  */
 public class MyRectangle extends Shape{
-    static String resultPNGpath = "result.png";
 
 
     private Point leftTop;
@@ -18,13 +18,13 @@ public class MyRectangle extends Shape{
     private Line bottomVtx;
 
 
-    public MyRectangle(Point leftTop, int width, int height) {
+    public MyRectangle(Point leftTop, int width, int height, BufferedImage image) {
         this.leftTop = leftTop;
         this.height = height;
         this.width = width;
-        this.leftVtx = new Line(leftTop, new Point(leftTop.x, leftTop.y + height), resultPNGpath);
-        this.bottomVtx = new Line(new Point(leftTop.x, leftTop.y + height), new Point(leftTop.x + width, leftTop.y + height), resultPNGpath);
-        this.rightVtx = new Line(new Point(leftTop.x + width, leftTop.y + height), new Point(leftTop.x + width, leftTop.y), resultPNGpath);
+        this.leftVtx = new Line(leftTop, new Point(leftTop.x, leftTop.y + height), image);
+        this.bottomVtx = new Line(new Point(leftTop.x, leftTop.y + height), new Point(leftTop.x + width, leftTop.y + height), image);
+        this.rightVtx = new Line(new Point(leftTop.x + width, leftTop.y + height), new Point(leftTop.x + width, leftTop.y), image);
     }
 
     @Override

@@ -15,28 +15,24 @@ import java.io.IOException;
  */
 public class Line {
 
-    final int IMG_WIDTH = 600;
+
     private Point start;
     private Point finish;
 
 
-    public Line(Point start, Point finish, String resultImgPath) {
+    public Line(Point start, Point finish, BufferedImage image) {
         this.start = start;
         this.finish = finish;
 
 
 
-        File resultFile = new File(resultImgPath);
-        int imgWidth = IMG_WIDTH;
-        int pixelColor = new Color(33, 25, 255).getRGB();
-        try {
-            BufferedImage image = new BufferedImage(IMG_WIDTH, IMG_WIDTH, BufferedImage.TYPE_INT_RGB);//ImageIO.read(resultFile);
-                image.setRGB(150, 150, pixelColor);
-            ImageIO.write(image, "png", resultFile);
-        }
-        catch (IOException e) {
 
-        }
+        int pixelColor = new Color(33, 25, 255).getRGB();
+
+            //ImageIO.read(resultFile);
+                image.setRGB(150, 150, pixelColor);
+
+
 
 
     }
@@ -70,10 +66,6 @@ public class Line {
         return r.getAttackAngle() >= this.getAngle() && this.getAngle() >= -r.getAttackAngle();
     }
 
-    public static void main(String[] args) {
-        Line l = new Line(new Point(10,10), new Point(9,9), "result.png");
-        l.getAngle();
-    }
 
     public boolean isIntersecting(Line that){
         int orientThisToStr = Checker.Signum(this.getOrientation(that.getStart()));

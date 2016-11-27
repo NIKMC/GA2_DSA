@@ -5,6 +5,7 @@ import model.MyRectangle;
 import model.RocketLauncherUltimateNitroTurboBoostSuperSpace3000;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -50,30 +51,31 @@ public class Reader {
     }
 
 
-    public List<MyCircle> readerObstaclesCircle() {
-        List<MyCircle> listCircles = new ArrayList<>();
+    public List<Shape> readerObstaclesCircle(BufferedImage image) {
+        List<Shape> listCircles = new ArrayList<>();
         List<String> strings = patternReader(FILE_OBSTACLE_CIRCLE);
         for(String string : strings){
-            listCircles.add(new MyCircle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
+            listCircles.add((Shape) new MyCircle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
                                          Integer.parseInt(string.substring(string.indexOf(" ") + 1, string.lastIndexOf(" ")))),
-                    Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1))));
+                    Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1)) ));
         }
         return listCircles;
     }
 
-    public List<MyRectangle> readerObstaclesRectangle() {
-        List<MyRectangle> listRectangles = new ArrayList<>();
+    public List<Shape> readerObstaclesRectangle(BufferedImage image) {
+        List<Shape> listRectangles = new ArrayList<>();
         List<String> strings = patternReader(FILE_OBSTACLE_RECTANGLE);
         for(String string : strings){
-            listRectangles.add(new MyRectangle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
+            listRectangles.add((Shape) new MyRectangle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
                     Integer.parseInt(string.substring(string.indexOf(" ") + 1, string.lastIndexOf(" ")))),
                     Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1, string.lastIndexOf("-"))),
-                    Integer.parseInt(string.substring(string.lastIndexOf("-") + 1))));
+                    Integer.parseInt(string.substring(string.lastIndexOf("-") + 1))),
+                    image);
         }
         return listRectangles;
     }
 
-    public List<RocketLauncherUltimateNitroTurboBoostSuperSpace3000> readerRocketLauncher() {
+    public List<RocketLauncherUltimateNitroTurboBoostSuperSpace3000> readerRocketLauncher(BufferedImage image) {
         List<RocketLauncherUltimateNitroTurboBoostSuperSpace3000> listRockets = new ArrayList<>();
 
         List<String> strings = patternReader(FILE_ROCKETLAUNCHER);
@@ -85,14 +87,15 @@ public class Reader {
         return listRockets;
     }
 
-    public List<MyRectangle> readerTargets() {
+    public List<MyRectangle> readerTargets(BufferedImage image) {
         List<MyRectangle> listRectangles = new ArrayList<>();
         List<String> strings = patternReader(FILE_TARGETS);
         for(String string : strings){
             listRectangles.add(new MyRectangle(new Point(Integer.parseInt(string.substring(0, string.indexOf(" "))),
                     Integer.parseInt(string.substring(string.indexOf(" ") + 1, string.lastIndexOf(" ")))),
                     Integer.parseInt(string.substring(string.lastIndexOf(" ") + 1, string.lastIndexOf("-"))),
-                    Integer.parseInt(string.substring(string.lastIndexOf("-") + 1))));
+                    Integer.parseInt(string.substring(string.lastIndexOf("-") + 1))),
+                    image);
         }
         return listRectangles;
     }
