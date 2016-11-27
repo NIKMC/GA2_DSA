@@ -23,22 +23,6 @@ public class BattleField {
         Reader fileReader = new Reader();
         File resultFile = new File(resultPNGpath);
         BufferedImage image = new BufferedImage(IMG_WIDTH, IMG_WIDTH, BufferedImage.TYPE_INT_RGB);
-        /*for(MyCircle circle : fileReader.readerObstaclesCircle()){
-            System.out.println(circle.getCenter().x + " | " + circle.getCenter().y + " | " + circle.getRadius());
-            System.out.println(circle.checkIntersection(new Line(new Point(30,90),new Point(110,4))));
-        }
-
-        for(MyRectangle rectangle : fileReader.readerObstaclesRectangle())
-            System.out.println(rectangle.getLeftTop().x + " | " + rectangle.getLeftTop().y + " | " +
-                    rectangle.getWidth() + " | " + rectangle.getHeight());
-
-        for (RocketLauncherUltimateNitroTurboBoostSuperSpace3000 rocket : fileReader.readerRocketLauncher())
-            System.out.println(rocket.getLocation().x + " | " + rocket.getLocation().y );
-
-        for(MyRectangle rectangle : fileReader.readerTargets())
-            System.out.println(rectangle.getLeftTop().x + " | " + rectangle.getLeftTop().y + " | " +
-                    rectangle.getWidth() + " | " + rectangle.getHeight());
-        */
 
         ArrayList<MyShape> obstacles = (ArrayList<MyShape>) fileReader.readerObstaclesCircle(image);
         obstacles.addAll( (ArrayList<MyShape>) fileReader.readerObstaclesRectangle(image) );
